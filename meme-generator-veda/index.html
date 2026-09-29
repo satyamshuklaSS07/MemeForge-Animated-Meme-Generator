@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MemeForge — a colorful animated meme generator built with HTML, CSS, JavaScript and Canvas API." />
+  <title>MemeForge | Animated Meme Generator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#">
+      <span class="brand-mark">MF</span>
+      <span>
+        <strong>MemeForge</strong>
+        <small>Creative Meme Studio</small>
+      </span>
+    </a>
+    <div class="top-actions">
+      <span class="status-dot"></span>
+      <span>Canvas powered</span>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <div>
+        <span class="eyebrow">VEDA TECHNOLOGY • WEB DEVELOPMENT</span>
+        <h1>Turn any image into a <span>share-worthy meme.</span></h1>
+        <p>Upload a photo, style your top and bottom text, preview it live, then export the final meme as a PNG.</p>
+      </div>
+      <div class="hero-badge">
+        <span>01</span>
+        <b>Pick</b>
+        <span>→</span>
+        <b>Style</b>
+        <span>→</span>
+        <b>Download</b>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <aside class="panel controls-panel">
+        <div class="panel-heading">
+          <div>
+            <span class="panel-kicker">CONTROL ROOM</span>
+            <h2>Build your meme</h2>
+          </div>
+          <span class="live-pill">LIVE</span>
+        </div>
+
+        <label class="upload-zone" for="imageInput">
+          <span class="upload-icon">↥</span>
+          <span>
+            <b>Upload an image</b>
+            <small>JPG, PNG, WEBP • drag & drop works too</small>
+          </span>
+          <input id="imageInput" type="file" accept="image/*" />
+        </label>
+
+        <div class="template-row">
+          <button class="template active" data-template="assets/neon.svg">Neon</button>
+          <button class="template" data-template="assets/sunset.svg">Sunset</button>
+          <button class="template" data-template="assets/ocean.svg">Ocean</button>
+          <button class="template" data-template="assets/space.svg">Space</button>
+        </div>
+
+        <div class="field-group">
+          <div class="field-title">
+            <label for="topText">Top text</label>
+            <span id="topCount">0/42</span>
+          </div>
+          <input id="topText" maxlength="42" placeholder="WHEN THE CODE FINALLY WORKS" value="WHEN THE CODE FINALLY WORKS" />
+        </div>
+
+        <div class="field-group">
+          <div class="field-title">
+            <label for="bottomText">Bottom text</label>
+            <span id="bottomCount">0/42</span>
+          </div>
+          <input id="bottomText" maxlength="42" placeholder="IT WAS JUST A MISSING SEMICOLON" value="IT WAS JUST A MISSING SEMICOLON" />
+        </div>
+
+        <div class="control-grid">
+          <div class="field-group">
+            <label for="fontSize">Text size</label>
+            <div class="range-line">
+              <input id="fontSize" type="range" min="28" max="96" value="58" />
+              <output id="fontSizeValue">58px</output>
+            </div>
+          </div>
+          <div class="field-group">
+            <label for="strokeWidth">Outline</label>
+            <div class="range-line">
+              <input id="strokeWidth" type="range" min="2" max="14" value="7" />
+              <output id="strokeValue">7px</output>
+            </div>
+          </div>
+        </div>
+
+        <div class="control-grid">
+          <div class="field-group">
+            <label for="fontFamily">Font</label>
+            <select id="fontFamily">
+              <option value="Impact">Impact</option>
+              <option value="Arial Black">Arial Black</option>
+              <option value="Arial">Arial</option>
+              <option value="Georgia">Georgia</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label for="textColor">Text color</label>
+            <input id="textColor" class="color-input" type="color" value="#ffffff" />
+          </div>
+        </div>
+
+        <div class="toggle-row">
+          <label class="switch-label">
+            <input id="shadowToggle" type="checkbox" checked />
+            <span class="switch"></span>
+            Text shadow
+          </label>
+          <label class="switch-label">
+            <input id="uppercaseToggle" type="checkbox" checked />
+            <span class="switch"></span>
+            Uppercase
+          </label>
+        </div>
+
+        <div class="button-row">
+          <button id="randomBtn" class="btn secondary">✦ Randomize</button>
+          <button id="downloadBtn" class="btn primary">↓ Download PNG</button>
+        </div>
+
+        <button id="resetBtn" class="reset-btn">Reset editor</button>
+      </aside>
+
+      <section class="preview-wrap">
+        <div class="preview-head">
+          <div>
+            <span class="panel-kicker">LIVE PREVIEW</span>
+            <h2>Your meme</h2>
+          </div>
+          <span class="resolution">1080 × 1080</span>
+        </div>
+
+        <div class="canvas-shell">
+          <div class="shine"></div>
+          <canvas id="memeCanvas" width="1080" height="1080"></canvas>
+        </div>
+
+        <div class="preview-tip">
+          <span>⌘</span>
+          <p><b>Tip:</b> Keep text short and high-contrast for a cleaner meme.</p>
+        </div>
+      </section>
+    </section>
+
+    <section class="feature-strip">
+      <article><span>01</span><b>Canvas API</b><p>Draw image + text directly onto a canvas.</p></article>
+      <article><span>02</span><b>Live controls</b><p>Every text and style change updates instantly.</p></article>
+      <article><span>03</span><b>PNG export</b><p>Download the finished meme in one click.</p></article>
+    </section>
+  </main>
+
+  <footer>
+    <span>MemeForge</span>
+    <span>Built with HTML5 • CSS3 • JavaScript • Canvas API</span>
+    <span>Veda Technology Task</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
